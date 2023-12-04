@@ -12,3 +12,13 @@ body {
     background-color: red;
     padding: 5px;
 }
+
+.modal {
+    background-color: blue;
+    padding: 5px;
+}
+
+.tableCard {
+    background-color: rosybrown;
+    padding: 5px;
+}

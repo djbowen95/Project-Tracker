@@ -31,7 +31,21 @@ instructionsEl.text("Click the button below, and complete the form, to add a new
 newProjectButton.text("New Project");
 
 // Modal section: form for a new project.
-modalEl.text("This section will contain a form");
+const modalHeaderEl = $("<h2>");
+const formEl = $("<form>");
+
+modalEl.attr("class", "modal");
+modalEl.append(modalHeaderEl, formEl);
+
+modalHeaderEl.text("New Project");
+formEl.append("<h3>Placeholder for the form</h3>");
 
 // Table section: table of existing projects.
-tableEl.text("This section will show a table");
+const tableHeaderEl = $("<h2>");
+const projectsEl = $("<table>");
+
+tableEl.attr("class", "tableCard");
+tableEl.append(tableHeaderEl, projectsEl);
+
+tableHeaderEl.text("Current Projects");
+projectsEl.append("<th>Mock</th><th>Project</th><th>Table</th>");

@@ -30,6 +30,16 @@ cardHeaderEl.text("How to Use");
 instructionsEl.text("Click the button below, and complete the form, to add a new project.");
 newProjectButton.text("New Project");
 
+let isFormDisplayed = false;
+newProjectButton.on("click", () => {
+    if (isFormDisplayed) {
+        modalEl.css("display", "none");
+    } else {
+        modalEl.css("display", "block");
+    }
+    isFormDisplayed = !isFormDisplayed;
+});
+
 // Modal section: form for a new project.
 const modalHeaderEl = $("<h2>");
 const formEl = $("<form>");

@@ -4,7 +4,7 @@ const rootEl = $("#root");
 // Render the four core sections of the page.
 const heroEl = $("<header>");
 const cardEl = $("<section>");
-const modalEl = $("<section>");
+const modalEl = $("<section>").hide();
 const tableEl = $("<section>");
 rootEl.append(heroEl, cardEl, modalEl, tableEl);
 
@@ -33,14 +33,12 @@ cardHeaderEl.text("How to Use");
 instructionsEl.text("Click the button below, and complete the form, to add a new project.");
 newProjectButton.text("New Project");
 
-let isFormDisplayed = false;
 newProjectButton.on("click", () => {
-    if (isFormDisplayed) {
-        modalEl.css("display", "none");
-    } else {
+    if (modalEl.css("display") === "none") {
         modalEl.css("display", "block");
+    } else {
+        modalEl.css("display", "none");
     }
-    isFormDisplayed = !isFormDisplayed;
 });
 
 // Modal section: form for a new project.
@@ -93,6 +91,8 @@ function handleFormSubmit (event) {
     $('input[type="text"]').val('');
     $('select').val("Big Project");
     $('input[type="number"]').val('0.00');
+
+    modalEl.hide();
 }
 
 // Append all form fields to the HTML element / render form fields.

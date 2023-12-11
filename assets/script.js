@@ -47,8 +47,18 @@ const formEl = $("<form>");
 modalEl.attr("class", "modal");
 modalEl.append(modalHeaderEl, formEl);
 
+const projectNameLabel = $("<label>").attr("for", "project-name").text("Project Name: ");
+const projectNameInput = $("<input>").attr({name: "project-name", type: "text", placeholder: "Project name here"});
+const projectTypeLabel = $("<label>").attr("for", "project-type").text("Project type: ");
+const projectTypeInput = $("<input>").attr({name: "project-type", type: "select"});
+
 modalHeaderEl.text("New Project");
-formEl.append("<h3>Placeholder for the form</h3>");
+formEl.append(projectNameLabel, projectNameInput, "<br>", projectTypeLabel, projectTypeInput);
+
+// form - project name
+// form - type of project, select drop down
+// hourly wage
+// date
 
 // Table section: table of existing projects.
 const tableHeaderEl = $("<h2>");

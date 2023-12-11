@@ -78,6 +78,7 @@ function handleFormSubmit (event) {
     console.log("Project cost: " + projectCostInput.val());
 
     $('input[type="text"]').val('');
+    $('select').val("Big Project");
     $('input[type="number"]').val('0.00');
 }
 

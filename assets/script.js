@@ -45,16 +45,30 @@ const modalHeaderEl = $("<h2>");
 const formEl = $("<form>");
 
 modalEl.attr("class", "modal");
+formEl.attr("id", "new-project-form");
 modalEl.append(modalHeaderEl, formEl);
 
 const projectNameLabel = $("<label>").attr("for", "project-name").text("Project Name: ");
-const projectNameInput = $("<input>").attr({name: "project-name", type: "text", placeholder: "Project name here"});
+const projectNameInput = $("<input>").attr({id: "project-name", type: "text", placeholder: "Project name here"});
 const projectTypeLabel = $("<label>").attr("for", "project-type").text("Project type: ");
-const projectTypeInput = $("<input>").attr({name: "project-type", type: "select"});
+const projectTypeInput = $("<select>").attr({name: "project-type", id: "project-type", form: "new-project-form"});
+
+const options = ["Big Project", "Medium Project", "Small Project"];
+
+function buildOptions () {
+    for (let i = 0; i < options.length; i++) {
+        const newOptionEl = $("<option>");
+        newOptionEl.attr("value", options[i]);
+        newOptionEl.text(options[i]);
+
+        projectTypeInput.append(newOptionEl);
+    }
+}
+
 
 modalHeaderEl.text("New Project");
-formEl.append(projectNameLabel, projectNameInput, "<br>", projectTypeLabel, projectTypeInput);
-
+formEl.append(projectNameLabel, projectNameInput, projectTypeLabel, projectTypeInput);
+buildOptions();
 // form - project name
 // form - type of project, select drop down
 // hourly wage

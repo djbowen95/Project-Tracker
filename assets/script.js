@@ -8,6 +8,9 @@ const modalEl = $("<section>");
 const tableEl = $("<section>");
 rootEl.append(heroEl, cardEl, modalEl, tableEl);
 
+// Array to store projects, will move to local storage eventually.
+const storedProjects = [];
+
 // Hero section: render welcome text and display current date.
 const welcomeEl = $("<h1>");
 const dateEl = $("<time>"); // Might change to time html tag
@@ -78,9 +81,14 @@ const submitButtonEl = $("<button>").text("Create New Project");
 function handleFormSubmit (event) {
     event.preventDefault();
 
-    console.log("Project name: " + projectNameInput.val());
-    console.log("Project type: " + projectTypeInput.val());
-    console.log("Project cost: " + projectCostInput.val());
+    const newProject = {
+        name: projectNameInput.val(),
+        type: projectTypeInput.val(),
+        cost: projectCostInput.val()
+    };
+
+    storedProjects.push(newProject);
+    buildNewProjectEl(newProject);
 
     $('input[type="text"]').val('');
     $('select').val("Big Project");
@@ -102,4 +110,14 @@ tableEl.attr("class", "tableCard");
 tableEl.append(tableHeaderEl, projectsEl);
 
 tableHeaderEl.text("Current Projects");
-projectsEl.append("<th>Mock</th><th>Project</th><th>Table</th>");
+projectsEl.append("<tr><th>Project Name</th><th>Project Type</th><th>Cost</th></tr>");
+
+function buildNewProjectEl (newProject) {
+    const tableRow = $("<tr>");
+    const name = $("<td>").text(newProject.name);
+    const type = $("<td>").text(newProject.type);
+    const cost = $("<td>").text(newProject.cost);
+    tableRow.append(name, type, cost);
+
+    projectsEl.append(tableRow);
+}

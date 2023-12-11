@@ -65,14 +65,30 @@ function buildOptions () {
     }
 }
 
+const projectCostLabel = $("<label>").attr("for", "project-cost").text("Cost: ");
+const projectCostInput = $("<input>").attr({id: "project-cost", type: "number", placeholder: "0.00"})
+
+const submitButtonEl = $("<button>").text("Create New Project");
+
+function handleFormSubmit (event) {
+    event.preventDefault();
+
+    console.log("Project name: " + projectNameInput.val());
+    console.log("Project type: " + projectTypeInput.val());
+    console.log("Project cost: " + projectCostInput.val());
+
+    $('input[type="text"]').val('');
+    $('input[type="number"]').val('0.00');
+}
 
 modalHeaderEl.text("New Project");
-formEl.append(projectNameLabel, projectNameInput, projectTypeLabel, projectTypeInput);
+formEl.append(projectNameLabel, projectNameInput, projectTypeLabel, projectTypeInput, projectCostLabel, projectCostInput, submitButtonEl);
+formEl.on("submit", handleFormSubmit);
 buildOptions();
 // form - project name
 // form - type of project, select drop down
 // hourly wage
-// date
+// date - going to leave this for now
 
 // Table section: table of existing projects.
 const tableHeaderEl = $("<h2>");

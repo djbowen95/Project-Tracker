@@ -47,12 +47,18 @@ const formEl = $("<form>");
 modalEl.attr("class", "modal");
 formEl.attr("id", "new-project-form");
 modalEl.append(modalHeaderEl, formEl);
+modalHeaderEl.text("New Project");
 
+// Build the elements for the form using jQuery, assign attributes and text values
 const projectNameLabel = $("<label>").attr("for", "project-name").text("Project Name: ");
 const projectNameInput = $("<input>").attr({id: "project-name", type: "text", placeholder: "Project name here"});
 const projectTypeLabel = $("<label>").attr("for", "project-type").text("Project type: ");
 const projectTypeInput = $("<select>").attr({name: "project-type", id: "project-type", form: "new-project-form"});
+const projectCostLabel = $("<label>").attr("for", "project-cost").text("Cost: ");
+const projectCostInput = $("<input>").attr({id: "project-cost", type: "number", placeholder: "0.00"})
+// date - going to leave this for now
 
+// All possible project types; iterate through and build a <option> for each.
 const options = ["Big Project", "Medium Project", "Small Project"];
 
 function buildOptions () {
@@ -65,11 +71,10 @@ function buildOptions () {
     }
 }
 
-const projectCostLabel = $("<label>").attr("for", "project-cost").text("Cost: ");
-const projectCostInput = $("<input>").attr({id: "project-cost", type: "number", placeholder: "0.00"})
-
+// Create element for for submit.
 const submitButtonEl = $("<button>").text("Create New Project");
 
+// Form submit handling function. 
 function handleFormSubmit (event) {
     event.preventDefault();
 
@@ -82,14 +87,12 @@ function handleFormSubmit (event) {
     $('input[type="number"]').val('0.00');
 }
 
-modalHeaderEl.text("New Project");
+// Append all form fields to the HTML element / render form fields.
 formEl.append(projectNameLabel, projectNameInput, projectTypeLabel, projectTypeInput, projectCostLabel, projectCostInput, submitButtonEl);
-formEl.on("submit", handleFormSubmit);
 buildOptions();
-// form - project name
-// form - type of project, select drop down
-// hourly wage
-// date - going to leave this for now
+
+// Event listener for form submit.
+formEl.on("submit", handleFormSubmit);
 
 // Table section: table of existing projects.
 const tableHeaderEl = $("<h2>");
